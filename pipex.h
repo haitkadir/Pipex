@@ -7,6 +7,6 @@
 # include "./assets/libft/libft.h"
 
 /*------------------- MAIN FUNCTION ---------------------*/
-int	main(int ac, char **av, char **env);
+char **cmd_iterator(char *env, char *cmd);
 
 #endif
