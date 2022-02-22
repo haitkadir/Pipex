@@ -6,7 +6,7 @@ SRC = pipex.c ./src/check_commands.c
 all: $(NAME)
 
 $(NAME): compile_assets
-	$(CC) $(CFLAGS) -L ./assets/ft_printf/ -lftprintf -L ./assets/libft/ -lft $(SRC) -o $(NAME)
+	$(CC) $(CFLAGS) -L ./assets/ft_printf/ -lftprintf -L ./assets/libft/ -lft $(SRC) -o $(NAME) -g
 
 compile_assets:
 	make -C ./assets/ft_printf/

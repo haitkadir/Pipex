@@ -6,10 +6,17 @@ int	main(int ac, char **av, char **env){
 	// int	fd[2];
 	// int	pid1;
 	// int	pid2;
+	t_exec exec;
+
+	ft_bzero(&exec, sizeof(t_exec));
 	if (ac == 5)
 	{
-		ft_printf("%d %s\n", ac, av[0]);
-		ft_printf("paht: %s", cmd_iterator(*env, av[2])[0]);
+		// ft_printf("%d %s\n", ac, av[0]);
+		// ft_printf("Result: %s", cmd_iterator(env, av[2])[0]);
+		exec = parsing(env, av);
+		ft_printf("before: %s\n", exec.cmd_path);
+		execve(exec.cmd_path, exec.cmd_split, NULL);
+		ft_printf("after\n");
 	}
 	// if (pipe(fd) == -1)
 	// 	return (1);
