@@ -13,9 +13,9 @@ int	main(int ac, char **av, char **env){
 	{
 		// ft_printf("%d %s\n", ac, av[0]);
 		// ft_printf("Result: %s", cmd_iterator(env, av[2])[0]);
+		ft_printf("before: %s\n", exec.cmd_switchs1);
 		exec = parsing(env, av);
-		ft_printf("before: %s\n", exec.cmd_path);
-		execve(exec.cmd_path, exec.cmd_split, NULL);
+		execve(exec.full_cmd1, exec.cmd_switchs1, NULL);
 		ft_printf("after\n");
 	}
 	// if (pipe(fd) == -1)

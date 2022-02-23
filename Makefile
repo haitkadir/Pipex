@@ -1,7 +1,7 @@
 NAME = pipex
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRC = pipex.c ./src/check_commands.c
+SRC = pipex.c ./src/check_commands.c ./src/free_exec.c
 
 all: $(NAME)
 
