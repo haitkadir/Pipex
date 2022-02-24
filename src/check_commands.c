@@ -88,7 +88,6 @@ t_exec parsing(char **env, char **av)
     exec.outfile = ft_strdup(av[4]);
     if (exec.err)
     {
-        ft_printf("\n ------------------DEBUG-------------err(%d)-----\n", exec.err);
         free_exec(&exec);
         exit(0);
     }
