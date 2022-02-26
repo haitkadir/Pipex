@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: haitkadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 14:41:40 by haitkadi          #+#    #+#             */
-/*   Updated: 2021/11/04 14:41:50 by haitkadi         ###   ########.fr       */
+/*   Created: 2021/11/05 09:17:01 by haitkadi          #+#    #+#             */
+/*   Updated: 2021/11/05 09:17:10 by haitkadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "../src/pipex.h"
 
-int	ft_toupper(int c)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	if (c >= 'a' && c <= 'z')
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	if (!*needle)
+		return ((char *)haystack);
+	while (i < len && haystack[i])
 	{
-		return (c -= 32);
+		j = 0;
+		while (i + j < len && haystack[i + j] && haystack[i + j] == needle[j])
+		{
+			if (!needle[j + 1])
+				return ((char *)haystack + i);
+			j++;
+		}
+		i++;
 	}
-	return (c);
+	return (0);
 }

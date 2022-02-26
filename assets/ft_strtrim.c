@@ -9,7 +9,7 @@
 /*   Updated: 2021/11/05 21:11:32 by haitkadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "../src/pipex.h"
 
 static	void	delete_char(char *str, size_t i)
 {

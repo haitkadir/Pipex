@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: haitkadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/26 22:27:34 by haitkadi          #+#    #+#             */
+/*   Updated: 2022/02/26 22:27:37 by haitkadi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 static	void	free_and_exit(t_exec *exec)
@@ -7,7 +19,7 @@ static	void	free_and_exit(t_exec *exec)
 	exit(0);
 }
 
-static void first_process(t_exec *exec, int fd[2])
+static	void	first_process(t_exec *exec, int fd[2])
 {
 	close(fd[0]);
 	if (dup2(exec->infile, STDIN_FILENO) == -1)
@@ -20,7 +32,7 @@ static void first_process(t_exec *exec, int fd[2])
 		free_and_exit(exec);
 }
 
-static void second_process(t_exec *exec, int fd[2])
+static	void	second_process(t_exec *exec, int fd[2])
 {
 	close(fd[1]);
 	if (dup2(fd[0], STDIN_FILENO) == -1)
@@ -32,7 +44,7 @@ static void second_process(t_exec *exec, int fd[2])
 		free_and_exit(exec);
 }
 
-static void the_recipe(t_exec *exec)
+static	void	the_recipe(t_exec *exec)
 {
 	int		fd[2];
 	int		pid1;
@@ -42,11 +54,13 @@ static void the_recipe(t_exec *exec)
 		free_and_exit(exec);
 	if (pipe(fd) == -1)
 		free_and_exit(exec);
-	if ((pid1 = fork()) == -1)
+	pid1 = fork();
+	if (pid1 == -1)
 		free_and_exit(exec);
 	if (pid1 == 0)
 		first_process(exec, fd);
-	if ((pid2 = fork()) == 0)
+	pid2 = fork();
+	if (pid2 == 0)
 		second_process(exec, fd);
 	else if (pid2 == -1)
 		free_and_exit(exec);
@@ -54,6 +68,7 @@ static void the_recipe(t_exec *exec)
 	close(fd[1]);
 	waitpid(pid1, NULL, 0);
 	waitpid(pid2, NULL, 0);
+	free_and_exit(exec);
 }
 
 int	main(int ac, char **av, char **env)

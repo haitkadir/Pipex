@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: haitkadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 08:54:52 by haitkadi          #+#    #+#             */
-/*   Updated: 2021/11/03 08:55:09 by haitkadi         ###   ########.fr       */
+/*   Created: 2021/11/05 15:29:54 by haitkadi          #+#    #+#             */
+/*   Updated: 2021/11/05 15:30:12 by haitkadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "../src/pipex.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strdup(const char *s1)
 {
-	unsigned char	*d;
-	unsigned char	*s;
+	char	*ptr;
+	int		i;
 
-	d = (unsigned char *)dst;
-	s = (unsigned char *)src;
-	if (s > d)
-		ft_memcpy(d, s, len);
-	else if (s < d)
+	i = 0;
+	ptr = (char *)malloc(sizeof(char) * ft_strlen(s1) + 1);
+	if (!ptr)
+		return (0);
+	while (s1[i])
 	{
-		while (len > 0)
-		{
-			d[len - 1] = s[len - 1];
-			len--;
-		}
+		ptr[i] = s1[i];
+		i++;
 	}
-	return (dst);
+	ptr[i] = 0;
+	return (ptr);
 }

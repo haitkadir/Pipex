@@ -9,7 +9,7 @@
 /*   Updated: 2021/11/09 11:04:29 by haitkadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "../src/pipex.h"
 
 static	size_t	words_counter(const char *s, char c)
 {

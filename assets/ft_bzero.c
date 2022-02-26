@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: haitkadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 16:48:58 by haitkadi          #+#    #+#             */
-/*   Updated: 2021/11/15 16:49:02 by haitkadi         ###   ########.fr       */
+/*   Created: 2021/11/02 15:51:42 by haitkadi          #+#    #+#             */
+/*   Updated: 2021/11/02 15:51:46 by haitkadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "../src/pipex.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_bzero(void *s, size_t n)
 {
-	t_list	*head;
-	t_list	*prev;
+	char	*str;
 
-	if (!del)
-		return ;
-	head = *lst;
-	*lst = NULL;
-	while (head != NULL)
+	str = (char *)s;
+	while (n > 0)
 	{
-		del(head->content);
-		prev = head;
-		head = head->next;
-		free(prev);
+		*str++ = '\0';
+		n--;
 	}
 }

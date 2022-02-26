@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_exec.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: haitkadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/26 22:27:11 by haitkadi          #+#    #+#             */
+/*   Updated: 2022/02/26 22:27:13 by haitkadi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
-static void free_2d(char **tow_d_arr)
+static	void	free_2d(char **tow_d_arr)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tow_d_arr[i])
@@ -10,13 +22,10 @@ static void free_2d(char **tow_d_arr)
 	free(tow_d_arr);
 }
 
-void free_exec(t_exec *exec)
+void	free_exec(t_exec *exec)
 {
-	int i;
-	i = 0;
 	if (exec->cmd_switchs1)
 		free_2d(exec->cmd_switchs1);
-	i = 0;
 	if (exec->cmd_switchs2)
 		free_2d(exec->cmd_switchs2);
 	if (exec->full_cmd1)

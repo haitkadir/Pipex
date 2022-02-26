@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: haitkadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 15:42:23 by haitkadi          #+#    #+#             */
-/*   Updated: 2021/11/15 15:42:25 by haitkadi         ###   ########.fr       */
+/*   Created: 2021/11/05 14:34:52 by haitkadi          #+#    #+#             */
+/*   Updated: 2021/11/05 14:34:58 by haitkadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+#include "../src/pipex.h"
+
+void	*ft_calloc(size_t count, size_t size)
 {
-	if (lst == NULL || !del)
-		return ;
-	del(lst->content);
-	free(lst);
+	char	*ptr;
+	size_t	i;
+
+	ptr = NULL;
+	ptr = (char *)malloc(count * size);
+	if (!ptr)
+		return (NULL);
+	i = 0;
+	while (i < count * size)
+	{
+		ptr[i] = 0;
+		i++;
+	}
+	return ((void *)ptr);
 }

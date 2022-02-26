@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: haitkadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/26 22:27:20 by haitkadi          #+#    #+#             */
+/*   Updated: 2022/02/26 22:27:24 by haitkadi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
-static void free_paths(char **paths)
+static	void	free_paths(char **paths)
 {
 	int	i;
 
@@ -13,7 +25,7 @@ static void free_paths(char **paths)
 	}
 }
 
-static char **get_paths(char **env)
+static	char	**get_paths(char **env)
 {
 	char	*path;
 	int		i;
@@ -32,7 +44,7 @@ static char **get_paths(char **env)
 	return (NULL);
 }
 
-static char *check_cmd(char **paths, char *cmd)
+static	char	*check_cmd(char **paths, char *cmd)
 {
 	char	*tmp_cmd;
 	char	*full_cmd;
@@ -40,6 +52,8 @@ static char *check_cmd(char **paths, char *cmd)
 
 	i = 0;
 	tmp_cmd = ft_strjoin("/", cmd);
+	if (!tmp_cmd)
+		return (NULL);
 	while (paths[i])
 	{
 		full_cmd = ft_strjoin(paths[i], tmp_cmd);
@@ -57,7 +71,7 @@ static char *check_cmd(char **paths, char *cmd)
 	return (NULL);
 }
 
-static int check_files(char **av, t_exec *exec)
+static	int	check_files(char **av, t_exec *exec)
 {
 	exec->infile = open(av[1], O_RDONLY);
 	if (exec->infile == -1)
@@ -74,9 +88,10 @@ t_exec	*parsing(char **env, char **av)
 	t_exec	*exec;
 	char	**paths;
 
-	exec = (t_exec *)malloc(sizeof(t_exec));
-	ft_bzero(exec, sizeof(t_exec));
 	paths = NULL;
+	exec = (t_exec *)ft_calloc(1, sizeof(t_exec));
+	if (!exec)
+		exit_err();
 	if (check_files(av, exec))
 		return (exec);
 	paths = get_paths(env);
