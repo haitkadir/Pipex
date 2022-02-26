@@ -14,7 +14,7 @@ void free_exec(t_exec **exec)
     i = 0;
     if((**exec).cmd_switchs2)
     {
-    write(1, "--------debug--------\n", 24);
+    // write(1, "--------debug--------\n", 24);
         while((**exec).cmd_switchs2[i])
             free((**exec).cmd_switchs2[i++]);
         free((**exec).cmd_switchs2);

@@ -10,15 +10,15 @@ void	error(int err)
 		write (2, "\033[0;31mError: invalid \"second command\"\n\033[0m", 39);
 	else if (err == 4)
 		write (2, "\033[0;31mUknown error while opening\"outfile\"\n\033[0m",\
-		52);
+		48);
 	else if (err == 5)
 	{
-		write(2, "\033[0;31mError: \"bad arguments\"\n\033[0m", 43);
+		write(2, "\033[0;31mError: \"bad arguments\"\n\033[0m", 35);
 		write(2, "\033[0;32mUsage: ./pipex infile cmd1 cmd2 outfile\n\033[0m",\
-		58);
+		52);
 	}
 	else if (err == 6)
-		write(2, "\033[0;31mError: \"bad commands\"\n\033[0m", 42);
+		write(2, "\033[0;31mError: \"bad commands\"\n\033[0m", 34);
 	else if(err)
-		write(2, "\033[0;31mUknown error happend\n\033[0m", 35);
+		write(2, "\033[0;31mUknown error happend\n\033[0m", 33);
 }

@@ -16,11 +16,9 @@ static void free_paths(char **paths)
 static char **get_paths(char **env)
 {
 	char	*path;
-	char	**tmp_path;
 	int		i;
 
 	path = NULL;
-	tmp_path = NULL;
 	i = 0;
 	while (env[i])
 	{
