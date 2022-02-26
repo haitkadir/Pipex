@@ -21,10 +21,10 @@ typedef struct s_exec
 }	t_exec;
 
 /*------------------- PARSING FUNCTIONS ---------------------*/
-t_exec	parsing(char **env, char **av);
+t_exec	*parsing(char **env, char **av);
 /*------------------- PRINT ERROR FUNCTIONS -----------------*/
 void	error(int err);
 /*----------------- FREE MEMORY FUNCTIONS -------------------*/
-void	free_exec(t_exec **exec);
+void	free_exec(t_exec *exec);
 
 #endif
