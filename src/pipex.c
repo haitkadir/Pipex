@@ -39,6 +39,7 @@ static	void	second_process(t_exec *exec, int fd[2])
 		free_and_exit(exec);
 	if (dup2(exec->outfile, STDOUT_FILENO) == -1)
 		free_and_exit(exec);
+	close(exec->outfile);
 	close(fd[0]);
 	if (execve(exec->full_cmd2, exec->cmd_switchs2, NULL) == -1)
 		free_and_exit(exec);

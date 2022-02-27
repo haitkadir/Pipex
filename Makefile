@@ -10,6 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
+# Reset
+Color_Off='\033[0m'       # Text Reset
+# Regular Colors
+Red='\033[0;31m'          # Red
+Green='\033[0;32m'        # Green
+BYellow='\033[1;33m'      # Yellow
+
 NAME = pipex
 CC = gcc -g
 CFLAGS = -Wall -Wextra -Werror
@@ -19,13 +26,18 @@ ASSETS = assets/ft_bzero.c assets/ft_calloc.c assets/ft_putstr_fd.c \
 		assets/ft_strdup.c
 SRC = ./src/pipex.c ./src/parsing.c ./src/free_exec.c ./src/errors.c
 
+.PHONY: all clean fclean re
+
 all: $(NAME)
 
-$(NAME):
-	$(CC) $(CFLAGS) $(SRC) $(ASSETS) -o $(NAME)
+$(NAME): $(SRC) $(ASSETS)
+	@$(CC) $(CFLAGS) $(SRC) $(ASSETS) -o $(NAME)
+	@echo $(Green)"Compiled successfuly"$(Color_Off)
+	@echo $(BYellow)"Usage: ./pipex infile cmd1 cmd2 outfile"$(Color_Off)
 
 clean:
-	rm -f pipex
+	@rm -f pipex
+	@echo $(Red)"Cleand successfuly"$(Color_Off)
 
 fclean: clean
 

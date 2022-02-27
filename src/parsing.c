@@ -76,7 +76,6 @@ static	int	check_files(char **av, t_exec *exec)
 	exec->infile = open(av[1], O_RDONLY);
 	if (exec->infile == -1)
 		return (exec->err = 1, 1);
-
 	exec->outfile = open(av[4], O_CREAT | O_TRUNC | O_RDWR, 0777);
 	if (exec->outfile == -1)
 		return (exec->err = 4, 1);
